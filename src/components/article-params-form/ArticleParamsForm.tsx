@@ -25,7 +25,7 @@ import { useOutsideClickClose } from '../../ui/select/hooks/useOutsideClickClose
 
 type ArticleStateProps = {
 	saveChanges: Dispatch<SetStateAction<ArticleStateType>>;
-	//saveChanges обновляет состояние, которое соответствует типу ArticleStateType
+	// saveChanges обновляет состояние, которое соответствует типу ArticleStateType
 };
 
 export const ArticleParamsForm = (props: ArticleStateProps) => {
@@ -36,12 +36,12 @@ export const ArticleParamsForm = (props: ArticleStateProps) => {
 	const [selectedOptions, setSelectedOptions] =
 		useState<ArticleStateType>(defaultArticleState); //состояние, которое отслеживает изменения внешнего вида статьи
 
-	//Функция для переключения состояния меню (открыть/закрыть)
+	// Функция для переключения состояния меню (открыть/закрыть)
 	const toggleSideBar = () => {
 		setIsMenuVisible((prevState) => !prevState);
 	};
 
-	//Функция для изменения выбранных полей в форме
+	// Функция для изменения выбранных полей в форме
 	const updateSelectedOption = (key: keyof ArticleStateType) => {
 		return (value: OptionType) => {
 			setSelectedOptions((prevState) => ({
@@ -51,27 +51,27 @@ export const ArticleParamsForm = (props: ArticleStateProps) => {
 		};
 	};
 
-	//Хук для закрытия меню при клике вне элемента
+	// Хук для закрытия меню при клике вне элемента
 	useOutsideClickClose({
 		isOpen: isMenuVisible,
 		rootRef: sideBarRef,
 		onChange: setIsMenuVisible,
 	});
 
-	//Функция для обработки события отправки формы
-	//и обновления состояния с текущими новыми данными
+	// Функция для обработки события отправки формы
+	// и обновления состояния с текущими новыми данными
 	const submitFormWithChanges = (evt: FormEvent<HTMLFormElement>) => {
 		evt.preventDefault();
 		saveChanges(selectedOptions);
 	};
 
-	//Обработчик для сброса формы и состояния
+	// Обработчик для сброса формы и состояния
 	const resetForm = () => {
 		setSelectedOptions(defaultArticleState);
 		saveChanges(defaultArticleState);
 	};
 
-	//Форма для настройки параметров
+	// Форма для настройки параметров
 	return (
 		<div ref={sideBarRef}>
 			<ArrowButton onClick={toggleSideBar} open={isMenuVisible} />

@@ -33,7 +33,7 @@ export const ArticleParamsForm = (props: ArticleStateProps) => {
 	const sideBarRef = useRef(null); //ссылка на Dom-элемент для доступа к его свойствам
 
 	const [isMenuVisible, setIsMenuVisible] = useState(false); //состояние, которое отслеживает открытие меню
-	const [selectedOptions, setSelectedOptions] =
+	const [articleStyles, setArticleStyles] =
 		useState<ArticleStateType>(defaultArticleState); //состояние, которое отслеживает изменения внешнего вида статьи
 
 	// Функция для переключения состояния меню (открыть/закрыть)
@@ -44,7 +44,7 @@ export const ArticleParamsForm = (props: ArticleStateProps) => {
 	// Функция для изменения выбранных полей в форме
 	const updateSelectedOption = (key: keyof ArticleStateType) => {
 		return (value: OptionType) => {
-			setSelectedOptions((prevState) => ({
+			setArticleStyles((prevState) => ({
 				...prevState,
 				[key]: value,
 			}));
@@ -62,12 +62,12 @@ export const ArticleParamsForm = (props: ArticleStateProps) => {
 	// и обновления состояния с текущими новыми данными
 	const submitFormWithChanges = (evt: FormEvent<HTMLFormElement>) => {
 		evt.preventDefault();
-		saveChanges(selectedOptions);
+		saveChanges(articleStyles);
 	};
 
 	// Обработчик для сброса формы и состояния
 	const resetForm = () => {
-		setSelectedOptions(defaultArticleState);
+		setArticleStyles(defaultArticleState);
 		saveChanges(defaultArticleState);
 	};
 
@@ -87,33 +87,33 @@ export const ArticleParamsForm = (props: ArticleStateProps) => {
 					<Select
 						title='Шрифт'
 						options={fontFamilyOptions}
-						selected={selectedOptions.fontFamilyOption}
+						selected={articleStyles.fontFamilyOption}
 						onChange={updateSelectedOption('fontFamilyOption')}
 					/>
 					<RadioGroup
 						title='Размер шрифта'
 						options={fontSizeOptions}
-						selected={selectedOptions.fontSizeOption}
+						selected={articleStyles.fontSizeOption}
 						name='Шрифт'
 						onChange={updateSelectedOption('fontSizeOption')}
 					/>
 					<Select
 						title='Цвет шрифта'
 						options={fontColors}
-						selected={selectedOptions.fontColor}
+						selected={articleStyles.fontColor}
 						onChange={updateSelectedOption('fontColor')}
 					/>
 					<Separator />
 					<Select
 						title='Цвет фона'
 						options={backgroundColors}
-						selected={selectedOptions.backgroundColor}
+						selected={articleStyles.backgroundColor}
 						onChange={updateSelectedOption('backgroundColor')}
 					/>
 					<Select
 						title='Ширина контента'
 						options={contentWidthArr}
-						selected={selectedOptions.contentWidth}
+						selected={articleStyles.contentWidth}
 						onChange={updateSelectedOption('contentWidth')}
 					/>
 					<div className={styles.bottomContainer}>

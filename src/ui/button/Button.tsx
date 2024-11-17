@@ -12,14 +12,14 @@ export const Button = ({
 	title: string;
 	onClick?: () => void;
 	htmlType?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
-	type: 'apply' | 'clear';
+	type: 'apply' | 'clear' | 'submit' | 'reset';
 }) => {
 	return (
 		<button
 			className={clsx(
 				styles.button,
-				{ [styles.button_apply]: type === 'apply' },
-				{ [styles.button_clear]: type === 'clear' }
+				{ [styles.button_apply]: type === 'submit' },
+				{ [styles.button_clear]: type === 'reset' }
 			)}
 			type={htmlType}
 			onClick={onClick}>

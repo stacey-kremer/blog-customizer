@@ -92,6 +92,18 @@ export const fontColors: OptionType[] = [
 
 export const backgroundColors: OptionType[] = [
 	{
+		title: 'Бледно-серый',
+		value: '#EEEEEE',
+		className: 'bg-pale_grey',
+		optionClassName: 'option-pale_grey',
+	},
+	{
+		title: 'Светло-серый',
+		value: '#D7D7D7',
+		className: 'bg-light_grey',
+		optionClassName: 'option-light_grey',
+	},
+	{
 		title: 'Белый',
 		value: '#FFFFFF',
 		className: 'bg-white',

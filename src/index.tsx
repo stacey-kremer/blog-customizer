@@ -18,21 +18,22 @@ const root = createRoot(domNode);
 const App = () => {
 	// Создала переменную, в которой будут храниться данные статьи,
 	// начальное состояние беру из defaultArticleState
-	const [value, setValue] = useState<ArticleStateType>(defaultArticleState);
+	const [articleStyles, setArticleStyles] =
+		useState<ArticleStateType>(defaultArticleState);
 
 	return (
 		<main
 			className={clsx(styles.main)}
 			style={
 				{
-					'--font-family': value.fontFamilyOption.value,
-					'--font-size': value.fontSizeOption.value,
-					'--font-color': value.fontColor.value,
-					'--container-width': value.contentWidth.value,
-					'--bg-color': value.backgroundColor.value,
+					'--font-family': articleStyles.fontFamilyOption.value,
+					'--font-size': articleStyles.fontSizeOption.value,
+					'--font-color': articleStyles.fontColor.value,
+					'--container-width': articleStyles.contentWidth.value,
+					'--bg-color': articleStyles.backgroundColor.value,
 				} as CSSProperties
 			}>
-			<ArticleParamsForm saveChanges={setValue} />
+			<ArticleParamsForm saveChanges={setArticleStyles} />
 			<Article />
 		</main>
 	);
